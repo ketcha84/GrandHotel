@@ -1,4 +1,4 @@
-package pl.grandhotel.grandhotel.controller;
+package pl.grandhotel.grandhotel.controller.admins;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,10 @@ public class AdminController {
     Adminrepository adminrepository;
 
     @GetMapping
-    public String admins(Model model){
-        model.addAttribute("admins",adminrepository.findAll());
+    public String admins(Model model) {
+        model.addAttribute("admins", adminrepository.findAll());
         return "/admin/admins.html";
     }
+
+
 }
