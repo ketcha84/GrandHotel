@@ -1,0 +1,20 @@
+body {
+    background-color: azure;
+}
+
+table {
+    border-radius: 10px;
+    border-style: solid;
+}
+
+th {
+    background-color: lightblue;
+}
+
+div.head {
+    margin: auto;
+    background-color: bisque;
+    width: 50%;
+    border-style: solid;
+    border-color: black;
+}
