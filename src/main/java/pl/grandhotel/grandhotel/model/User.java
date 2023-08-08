@@ -100,4 +100,16 @@ public class User {
         return Objects.hash(userId, userName, userLastname, userEmail, userPhone, userPassword, userStatus);
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", userLastname='" + userLastname + '\'' +
+                ", userEmail='" + userEmail + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userStatus=" + userStatus +
+                '}';
+    }
 }
