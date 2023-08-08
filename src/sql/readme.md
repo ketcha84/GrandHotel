@@ -9,7 +9,7 @@ There is a few steps:
 <li>Open Hotel.sql in query tool.</li>
 <li>Execute this file.</li>
 After, you can see somthing like this:<br>
-<img src="img/1.png">
+<img src="img/1.png" alt="Created tables, sequences and types"><br>
 As you can see there is created 7 tables, 7 sequences and some types.
 
 <li>In a similar way you can execute another sript to add data.</li>
