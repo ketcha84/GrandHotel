@@ -16,6 +16,6 @@ public class AdminController {
     @GetMapping
     public String admins(Model model){
         model.addAttribute("admins",adminrepository.findAll());
-        return "admins.html";
+        return "/admin/admins.html";
     }
 }
