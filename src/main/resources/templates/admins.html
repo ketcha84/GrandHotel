@@ -2,12 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Admins page</title>
 </head>
 <body>
-<ul>
-  <li th:each="element: ${admins}" th:text="${element}">2 + 2 = 4</li>
-</ul>
-
+<h2>Admins page</h2>
+<p>Information on Service Accounts<br>
+    in developing...
+</p>
+<table border="1px">
+    <tr><th>id</th><th>Login</th><th>Role</th></tr>
+    <tr th:each="account: ${admins}">
+        <td th:text="${account.getAccountId()}">id</td>
+        <td th:text="${account.getAccountLogin()}">login</td>
+        <td th:text="${account.getAccountRole()}">role</td>
+    </tr>
+</table>
 </body>
 </html>
