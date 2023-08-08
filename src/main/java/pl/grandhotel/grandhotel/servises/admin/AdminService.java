@@ -9,8 +9,12 @@ import java.util.List;
 
 @Service
 public class AdminService {
-    @Autowired
+    final
     Adminrepository adminrepository;
+
+    public AdminService(Adminrepository adminrepository) {
+        this.adminrepository = adminrepository;
+    }
 
     public List<Account> getAccounts(){
         return adminrepository.findAll();
