@@ -5,19 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.grandhotel.grandhotel.repositories.Adminrepository;
+import pl.grandhotel.grandhotel.servises.admin.AdminService;
 
 @Controller
 @RequestMapping("/admins")
 public class AdminController {
     @Autowired
-    Adminrepository adminrepository;
+    AdminService adminService;
 
     @GetMapping
     public String admins(Model model) {
-        model.addAttribute("admins", adminrepository.findAll());
+        model.addAttribute("admins", adminService.getAccounts());
         return "/admin/admins.html";
     }
-
 
 }
