@@ -1,6 +1,7 @@
 package pl.grandhotel.grandhotel.servises.users;
 
 import org.springframework.data.domain.Example;
+import org.springframework.data.util.TypeCollector;
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserException;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserExistsException;
@@ -68,9 +69,20 @@ public class UserService {
             throw new UserIllegalParametersException();
         }
         if (!repository.exists(Example.of(user))) {
-            throw new UserException("User not found");
+            throw new UserException("User not found.");
         }
         return repository.save(user);
+    }
+
+    public boolean deleteUser(User user) {
+        if (!isValid(user)) {
+            return false;
+        }
+        if (!repository.existsById(user.getUserId())) {
+            return false;
+        }
+        repository.delete(user);
+        return true;
     }
 
     private boolean isValid(User user) {
