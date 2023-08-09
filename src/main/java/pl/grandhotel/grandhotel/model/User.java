@@ -31,6 +31,19 @@ public class User {
     @Column(name = "user_status", nullable = false)
     private Status userStatus;
 
+    public User() {
+
+    }
+
+    public User(String name, String lastName, String email, String phone, String password, Status status) {
+        this.userEmail = email;
+        this.userPassword = password;
+        this.userStatus = status;
+        this.userLastname = lastName;
+        this.userName = name;
+        this.userPhone = phone;
+    }
+
     public int getUserId() {
         return userId;
     }
