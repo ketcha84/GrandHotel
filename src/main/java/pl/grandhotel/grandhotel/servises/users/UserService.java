@@ -77,11 +77,11 @@ public class UserService {
         }
     }
 
-    public boolean checkPhone(String userPhone) {
+    private boolean checkPhone(String userPhone) {
         return userPhone.matches("^[1-9]\\d{8}");
     }
 
-    public boolean checkEmail(String email) {
+    private boolean checkEmail(String email) {
         return email.matches("^[\\w\\.-]+@[\\w\\.-]+\\.\\w+$");
     }
 }
