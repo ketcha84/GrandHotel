@@ -2,7 +2,9 @@ package pl.grandhotel.grandhotel.servises.users;
 
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
-import pl.grandhotel.grandhotel.exceptions.UserException;
+import pl.grandhotel.grandhotel.exceptions.userExceptions.UserException;
+import pl.grandhotel.grandhotel.exceptions.userExceptions.UserExistsException;
+import pl.grandhotel.grandhotel.exceptions.userExceptions.UserIllegalParametersException;
 import pl.grandhotel.grandhotel.model.User;
 import pl.grandhotel.grandhotel.model.types.Status;
 import pl.grandhotel.grandhotel.repositories.UserRepository;
@@ -50,19 +52,29 @@ public class UserService {
 
     public User createUser(User user) throws UserException {
         if (repository.exists(Example.of(user))) {
-            throw new UserException("This user is exist");
+            throw new UserExistsException();
         }
         if (isValid(user)) {
             user.setUserStatus(Status.NEW);
             repository.save(user);
             return user;
         } else {
-            throw new UserException("Invalid parameters of entity User");
+            throw new UserIllegalParametersException();
         }
     }
 
+    public User updateUser(User user) throws UserException {
+        if (!isValid(user)) {
+            throw new UserIllegalParametersException();
+        }
+        if (!repository.exists(Example.of(user))) {
+            throw new UserException("User not found");
+        }
+        return repository.save(user);
+    }
+
     private boolean isValid(User user) {
-        if (user.getUserName() != null
+        return user.getUserName() != null
                 && !user.getUserName().equals("")
                 && user.getUserLastname() != null
                 && !user.getUserLastname().equals("")
@@ -70,11 +82,7 @@ public class UserService {
                 && checkEmail(user.getUserEmail())
                 && user.getUserPassword() != null
                 && !user.getUserPassword().equals("")
-        && checkPhone(user.getUserPhone())) {
-            return true;
-        } else {
-            return false;
-        }
+                && checkPhone(user.getUserPhone());
     }
 
     private boolean checkPhone(String userPhone) {
