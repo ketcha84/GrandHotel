@@ -38,7 +38,7 @@ public class UserService {
         return repository.findUserByUserPhone(phone);
     }
 
-    public List<User> getbyStatus(Status status) {
+    public List<User> getByStatus(Status status) {
         return repository.findUserByUserStatus(status);
     }
 }
