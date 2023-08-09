@@ -1,6 +1,8 @@
 package pl.grandhotel.grandhotel.servises.users;
 
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import pl.grandhotel.grandhotel.exceptions.UserException;
 import pl.grandhotel.grandhotel.model.User;
 import pl.grandhotel.grandhotel.model.types.Status;
 import pl.grandhotel.grandhotel.repositories.UserRepository;
@@ -40,5 +42,46 @@ public class UserService {
 
     public List<User> getByStatus(Status status) {
         return repository.findUserByUserStatus(status);
+    }
+
+    /*
+    -------------------Setters----------------------------------->
+     */
+
+    public User createUser(User user) throws UserException {
+        if (repository.exists(Example.of(user))) {
+            throw new UserException("This user is exist");
+        }
+        if (isValid(user)) {
+            user.setUserStatus(Status.NEW);
+            repository.save(user);
+            return user;
+        } else {
+            throw new UserException("Invalid parameters of entity User");
+        }
+    }
+
+    private boolean isValid(User user) {
+        if (user.getUserName() != null
+                && !user.getUserName().equals("")
+                && user.getUserLastname() != null
+                && !user.getUserLastname().equals("")
+                && user.getUserEmail() != null
+                && checkEmail(user.getUserEmail())
+                && user.getUserPassword() != null
+                && !user.getUserPassword().equals("")
+        && checkPhone(user.getUserPhone())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean checkPhone(String userPhone) {
+        return userPhone.matches("^[1-9]\\d{8}");
+    }
+
+    public boolean checkEmail(String email) {
+        return email.matches("^[\\w\\.-]+@[\\w\\.-]+\\.\\w+$");
     }
 }
