@@ -1,7 +1,6 @@
 package pl.grandhotel.grandhotel.servises.users;
 
 import org.springframework.data.domain.Example;
-import org.springframework.data.util.TypeCollector;
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserException;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserExistsException;
