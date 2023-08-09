@@ -17,7 +17,6 @@ public class UserService {
     }
 
     /* ----------------------------------gettery--------------------------------------------------->
-todo: add Exceptions in methods
      */
     public List<User> getAllUsers() {
         return repository.findAll();
@@ -39,7 +38,7 @@ todo: add Exceptions in methods
         return repository.findUserByUserPhone(phone);
     }
 
-    public Optional<User> getbyStatus(Status status) {
+    public List<User> getbyStatus(Status status) {
         return repository.findUserByUserStatus(status);
     }
 }
