@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="adminsStyle.css">
     <meta charset="UTF-8">
@@ -18,6 +19,10 @@
         <td th:text="${account.getAccountId()}">id</td>
         <td th:text="${account.getAccountLogin()}">login</td>
         <td th:text="${account.getAccountRole()}">role</td>
+        <td th:text="${account}"></td>
+    </tr>
+    <tr th:each="account: ${admins}">
+        <td th:text="${account.getAccountId()}">id</td>
     </tr>
 </table>
 </body>
