@@ -21,9 +21,6 @@
         <td th:text="${account.getAccountRole()}">role</td>
         <td th:text="${account}"></td>
     </tr>
-    <tr th:each="account: ${admins}">
-        <td th:text="${account.getAccountId()}">id</td>
-    </tr>
 </table>
 </body>
 </html>
