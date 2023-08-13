@@ -5,6 +5,8 @@ import pl.grandhotel.grandhotel.model.Order;
 import pl.grandhotel.grandhotel.repositories.*;
 import pl.grandhotel.grandhotel.servises.users.UserService;
 
+import java.util.List;
+
 @Service
 public class BookingService {
     DiscountRepository discountRepository;
@@ -14,7 +16,6 @@ public class BookingService {
     UserService userService;
 
     public BookingService(DiscountRepository discountRepository,
-
                           OrderRepository orderRepository,
                           RoomRepository roomRepository,
                           VatRepository vatRepository,
@@ -38,8 +39,8 @@ public class BookingService {
      *
      *
      */
-    private boolean checkOrder(Order order){
-
-        return false;
+    private boolean checkOrder(Order order) {
+        List<Order> l = orderRepository.findByRoomIdAndMaxEndDate(order.getRoomId(), order.getStartDate(), order.getEndDate());
+        return l.isEmpty();
     }
 }

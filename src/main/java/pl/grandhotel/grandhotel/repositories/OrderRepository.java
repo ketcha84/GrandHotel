@@ -12,8 +12,6 @@ import java.util.List;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-//    todo write query with returnet type not List but Order,
-//            must be returned last order with max end Date!
-    @Query("SELECT o FROM Order o WHERE o.roomId = :roomId AND o.endDate <= :endDate")
-    List<Order> findByRoomIdAndMaxEndDate(@Param("roomId") Integer roomId, @Param("endDate") Date end_date);
+    @Query("SELECT o FROM Order o WHERE o.roomId = :roomId AND (o.startDate BETWEEN :startDate AND :endDate) AND (o.endDate BETWEEN :startDate AND :endDate)")
+    List<Order> findByRoomIdAndMaxEndDate(@Param("roomId") Integer roomId, @Param("startDate") Date start_date, @Param("endDate") Date end_date);
 }
