@@ -1,9 +1,8 @@
-package pl.grandhotel.grandhotel.servises.hotelServices;
+package pl.grandhotel.grandhotel.servises;
 
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.model.Order;
 import pl.grandhotel.grandhotel.repositories.*;
-import pl.grandhotel.grandhotel.servises.users.UserService;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package pl.grandhotel.grandhotel.servises.users;
+package pl.grandhotel.grandhotel.servises;
 
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;

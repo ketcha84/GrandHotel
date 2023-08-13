@@ -1,4 +1,4 @@
-package pl.grandhotel.grandhotel.servises.admin;
+package pl.grandhotel.grandhotel.servises;
 
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.model.Account;
