@@ -28,19 +28,28 @@ public class BookingService {
     }
 
     public Order bookARoom(Order order) {
-
+        if (checkOrder(order)) {
+            return order;
+        }
         return new Order();
     }
 
-    /* you can not book existing order with same date
-    you can't book room with end_date <= start_date
-    you can't book room with 0 amount of normal discounts
-    you can't book room with user wich banned or not confirmed
-     *
-     *
-     */
     private boolean checkOrder(Order order) {
+        if (order.getEndDate() == null || order.getStartDate() == null) {
+            return false;
+        }
+        if (order.getStartDate().equals(order.getEndDate())
+                || order.getStartDate().after(order.getEndDate())) {
+            return false;
+        }
+
         List<Order> l = orderRepository.findByRoomIdAndMaxEndDate(order.getRoomId(), order.getStartDate(), order.getEndDate());
-        return l.isEmpty();
+        if (!l.isEmpty()) return false;
+
+        if (order.getAmountNormal() == 0 && order.getAmountInvalid() == 0 && order.getAmountPensioner() == 0) {
+            return false;
+        }
+
+        return true;
     }
 }
