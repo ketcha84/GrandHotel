@@ -8,20 +8,18 @@ import pl.grandhotel.grandhotel.servises.users.UserService;
 @Service
 public class BookingService {
     DiscountRepository discountRepository;
-    FoodRepository foodRepository;
     OrderRepository orderRepository;
     RoomRepository roomRepository;
     VatRepository vatRepository;
     UserService userService;
 
     public BookingService(DiscountRepository discountRepository,
-                          FoodRepository foodRepository,
+
                           OrderRepository orderRepository,
                           RoomRepository roomRepository,
                           VatRepository vatRepository,
                           UserService userService) {
         this.discountRepository = discountRepository;
-        this.foodRepository = foodRepository;
         this.orderRepository = orderRepository;
         this.roomRepository = roomRepository;
         this.vatRepository = vatRepository;
