@@ -1,13 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Hello</title>
+    <link rel="stylesheet" type="text/css" href="hotel.css">
+    <title>Grand Hotel</title>
 </head>
 <body>
-<h1>Hello world!!!</h1>
-<a href="/admins">admins page</a>
 
+<img src="img/logo.jpg" width="100%" class="logo">
+<div class="logging">
+    <p>Log in... Join us...</p>
+</div>
 
+<div class="rooms">
+    <table class="content">
+        <tr>
+            <th:block th:each="count : ${#numbers.sequence(1,rooms.size(),1)}">
+
+                <th:block th:if="${count.intValue()}%4!=0">
+                    <td>
+                        <p>Room Id: <span th:text="${rooms.get(count.intValue()-1).getRoomId()}">id</span></p>
+                        <p>Amount of places in room: <span th:text="${rooms.get(count.intValue()-1).getAmountOfPlaces()}"></span></p>
+                        <p>Luxury: <span th:if="${rooms.get(count.intValue()-1).getLuxury()}">YES</span>
+                            <span th:unless="${rooms.get(count.intValue()-1).getLuxury()}">NO</span>
+                        </p>
+                        <p>Price: <span th:text="${rooms.get(count.intValue()-1).getPrice()}"></span></p>
+                    </td>
+                </th:block>
+                <th:block th:unless="${count.intValue()}%4!=0">
+                    <span th:text="${count.intValue()}">rooms</span></p>
+                    <tr>
+                        <td>
+
+                        </td>
+                </th:block>
+            </th:block>
+        </tr>
+    </table>
+</div>
 </body>
 </html>
