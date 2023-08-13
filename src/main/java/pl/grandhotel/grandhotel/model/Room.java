@@ -3,7 +3,6 @@ package pl.grandhotel.grandhotel.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +13,8 @@ public class Room {
     @Column(name = "room_id", nullable = false, updatable = false)
     private int roomId;
     @Basic
-    @Column(name = "amount_of_rooms", nullable = false)
-    private int amountOfRooms;
+    @Column(name = "amount_of_places", nullable = false)
+    private int amountOfPlaces;
     @Basic
     @Column(name = "price", nullable = false, precision = 2)
     private BigDecimal price;
@@ -34,12 +33,12 @@ public class Room {
         this.roomId = roomId;
     }
 
-    public int getAmountOfRooms() {
-        return amountOfRooms;
+    public int getAmountOfPlaces() {
+        return amountOfPlaces;
     }
 
-    public void setAmountOfRooms(int amountOfRooms) {
-        this.amountOfRooms = amountOfRooms;
+    public void setAmountOfPlaces(int amountOfPlaces) {
+        this.amountOfPlaces = amountOfPlaces;
     }
 
     public BigDecimal getPrice() {
@@ -71,11 +70,11 @@ public class Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return roomId == room.roomId && amountOfRooms == room.amountOfRooms && Objects.equals(price, room.price) && Objects.equals(luxury, room.luxury) && Objects.equals(referenceWww, room.referenceWww);
+        return roomId == room.roomId && amountOfPlaces == room.amountOfPlaces && Objects.equals(price, room.price) && Objects.equals(luxury, room.luxury) && Objects.equals(referenceWww, room.referenceWww);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomId, amountOfRooms, price, luxury, referenceWww);
+        return Objects.hash(roomId, amountOfPlaces, price, luxury, referenceWww);
     }
 }
