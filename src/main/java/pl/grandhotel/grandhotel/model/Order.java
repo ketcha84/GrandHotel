@@ -27,26 +27,20 @@ public class Order {
     @Column(name = "end_date", nullable = false)
     private Date endDate;
     @Basic
-    @Column(name = "amount_normal", nullable = false)
+    @Column(name = "amount_normal")
     private int amountNormal;
+
     @Basic
-    @Column(name = "amount_child", nullable = true)
-    private Integer amountChild;
+    @Column(name = "amount_pensioner")
+    private int amountPensioner;
+
     @Basic
-    @Column(name = "amount_pensioner", nullable = true)
-    private Integer amountPensioner;
-    @Basic
-    @Column(name = "amount_baby", nullable = true)
-    private Integer amountBaby;
-    @Basic
-    @Column(name = "append_food", nullable = true)
-    private Boolean appendFood;
+    @Column(name = "amount_invalid")
+    private int amountInvalid;
+
     @Basic
     @Column(name = "description", nullable = true, length = -1)
     private String description;
-    @Basic
-    @Column(name = "penalty", nullable = true, precision = 2)
-    private BigDecimal penalty;
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
     private Status orderStatus;
@@ -99,14 +93,6 @@ public class Order {
         this.amountNormal = amountNormal;
     }
 
-    public Integer getAmountChild() {
-        return amountChild;
-    }
-
-    public void setAmountChild(Integer amountChild) {
-        this.amountChild = amountChild;
-    }
-
     public Integer getAmountPensioner() {
         return amountPensioner;
     }
@@ -115,21 +101,6 @@ public class Order {
         this.amountPensioner = amountPensioner;
     }
 
-    public Integer getAmountBaby() {
-        return amountBaby;
-    }
-
-    public void setAmountBaby(Integer amountBaby) {
-        this.amountBaby = amountBaby;
-    }
-
-    public Boolean getAppendFood() {
-        return appendFood;
-    }
-
-    public void setAppendFood(Boolean appendFood) {
-        this.appendFood = appendFood;
-    }
 
     public String getDescription() {
         return description;
@@ -137,14 +108,6 @@ public class Order {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public BigDecimal getPenalty() {
-        return penalty;
-    }
-
-    public void setPenalty(BigDecimal penalty) {
-        this.penalty = penalty;
     }
 
     public Status getOrderStatus() {
@@ -155,16 +118,35 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
+    public void setAmountPensioner(int amountPensioner) {
+        this.amountPensioner = amountPensioner;
+    }
+
+    public int getAmountInvalid() {
+        return amountInvalid;
+    }
+
+    public void setAmountInvalid(int amountInvalid) {
+        this.amountInvalid = amountInvalid;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return orderId == order.orderId && userId == order.userId && roomId == order.roomId && amountNormal == order.amountNormal && Objects.equals(startDate, order.startDate) && Objects.equals(endDate, order.endDate) && Objects.equals(amountChild, order.amountChild) && Objects.equals(amountPensioner, order.amountPensioner) && Objects.equals(amountBaby, order.amountBaby) && Objects.equals(appendFood, order.appendFood) && Objects.equals(description, order.description) && Objects.equals(penalty, order.penalty) && Objects.equals(orderStatus, order.orderStatus);
+        return getOrderId() == order.getOrderId()
+                && getUserId() == order.getUserId()
+                && getRoomId() == order.getRoomId()
+                && getAmountNormal() == order.getAmountNormal()
+                && getAmountPensioner() == order.getAmountPensioner()
+                && getAmountInvalid() == order.getAmountInvalid()
+                && Objects.equals(getStartDate(), order.getStartDate())
+                && Objects.equals(getEndDate(), order.getEndDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(orderId, userId, roomId, startDate, endDate, amountNormal, amountChild, amountPensioner, amountBaby, appendFood, description, penalty, orderStatus);
+        return Objects.hash(getOrderId(), getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid());
     }
 }
