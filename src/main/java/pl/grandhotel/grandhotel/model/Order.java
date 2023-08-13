@@ -149,4 +149,20 @@ public class Order {
     public int hashCode() {
         return Objects.hash(getOrderId(), getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid());
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", userId=" + userId +
+                ", roomId=" + roomId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", amountNormal=" + amountNormal +
+                ", amountPensioner=" + amountPensioner +
+                ", amountInvalid=" + amountInvalid +
+                ", description='" + description + '\'' +
+                ", orderStatus=" + orderStatus +
+                '}';
+    }
 }
