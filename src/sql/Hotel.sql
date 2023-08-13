@@ -1,7 +1,6 @@
 
 DROP TABLE IF EXISTS rooms CASCADE;
 DROP TABLE IF EXISTS discounts CASCADE;
-DROP TABLE IF EXISTS foods CASCADE;
 DROP TABLE IF EXISTS vat CASCADE;
 DROP TABLE IF EXISTS accounts CASCADE;
 DROP TABLE IF EXISTS users CASCADE;
@@ -12,7 +11,6 @@ DROP SEQUENCE IF EXISTS rooms_sequence CASCADE;
 DROP SEQUENCE IF EXISTS users_sequence CASCADE;
 DROP SEQUENCE IF EXISTS orders_sequence CASCADE;
 DROP SEQUENCE IF EXISTS accounts_sequence CASCADE;
-DROP SEQUENCE IF EXISTS food_sequence CASCADE;
 DROP SEQUENCE IF EXISTS discounts_sequence CASCADE;
 DROP SEQUENCE IF EXISTS vat_sequence CASCADE;
 
@@ -24,7 +22,6 @@ CREATE SEQUENCE rooms_sequence START WITH 100;
 CREATE SEQUENCE users_sequence START WITH 100;
 CREATE SEQUENCE orders_sequence START WITH 100;
 CREATE SEQUENCE accounts_sequence START WITH 100;
-CREATE SEQUENCE food_sequence START WITH 1;
 CREATE SEQUENCE discounts_sequence START WITH 1;
 CREATE SEQUENCE vat_sequence START WITH 1;
 
@@ -44,8 +41,7 @@ CREATE TYPE roles AS ENUM(
 
 CREATE TYPE discounts_types AS ENUM(
 	'PENSIONER',
-	'CHILD',
-	'BABY',
+	'INVALID',
 	'NORMAL'
 );
 
@@ -65,14 +61,6 @@ CREATE TABLE vat(
 	
 	CONSTRAINT vat_ch CHECK(vat >= 0.00 AND vat < 1),
 	CONSTRAINT id_vat_pk PRIMARY KEY (id_vat)
-);
-
-CREATE TABLE foods(
-	id_food INTEGER DEFAULT nextval('food_sequence') NOT NULL,
-	description TEXT NOT NULL,
-	price NUMERIC (5,2) NOT NULL,
-	
-	CONSTRAINT id_food_pk PRIMARY KEY(id_food)
 );
 
 CREATE TABLE accounts(
@@ -115,13 +103,10 @@ CREATE TABLE orders(
 	room_id INTEGER NOT NULL,
 	start_date DATE NOT NULL,
 	end_date DATE NOT NULL,
-	amount_normal INTEGER DEFAULT (1) NOT NULL,
-	amount_child INTEGER,
+	amount_normal INTEGER,
 	amount_pensioner INTEGER,
-	amount_baby INTEGER,
-	append_food BOOLEAN DEFAULT FALSE,
+	amount_invalid INTEGER,
 	description TEXT,
-	penalty NUMERIC(10,2) DEFAULT (0.00),
 	order_status status NOT NULL,
 	
 	CONSTRAINT order_id_pk PRIMARY KEY (order_id),
