@@ -19,7 +19,7 @@ public class Room {
     @Column(name = "price", nullable = false, precision = 2)
     private BigDecimal price;
     @Basic
-    @Column(name = "luxury", nullable = true)
+    @Column(name = "luxury", nullable = false)
     private Boolean luxury;
     @Basic
     @Column(name = "reference_www", nullable = false, length = 100)
@@ -70,11 +70,15 @@ public class Room {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Room room = (Room) o;
-        return roomId == room.roomId && amountOfPlaces == room.amountOfPlaces && Objects.equals(price, room.price) && Objects.equals(luxury, room.luxury) && Objects.equals(referenceWww, room.referenceWww);
+        return roomId == room.roomId
+                && amountOfPlaces == room.amountOfPlaces
+                && Objects.equals(price, room.price)
+                && Objects.equals(luxury, room.luxury)
+                && Objects.equals(referenceWww, room.referenceWww);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(roomId, amountOfPlaces, price, luxury, referenceWww);
+        return Objects.hash(roomId, amountOfPlaces, price, luxury);
     }
 }
