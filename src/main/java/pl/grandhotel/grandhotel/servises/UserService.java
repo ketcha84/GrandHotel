@@ -1,5 +1,6 @@
 package pl.grandhotel.grandhotel.servises;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserException;
@@ -14,11 +15,10 @@ import java.util.Optional;
 
 @Service
 public class UserService {
-    UserRepository repository;
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
+    @Autowired
+    private UserRepository repository;
+
 
     /* ----------------------------------gettery--------------------------------------------------->
      */
