@@ -10,7 +10,7 @@ There is a few steps:
 <li>Execute this file.</li>
 After, you can see somthing like this:<br>
 <img src="img/1.png" alt="Created tables, sequences and types"><br>
-As you can see there is created 7 tables, 7 sequences and some types.
+As you can see there is created 8 tables, 8 sequences and some types.
 
-<li>In a similar way you can execute another sript to add data.</li>
+<li>In a similar way you can execute another sript to add testing data.</li>
 </p>
