@@ -10,11 +10,11 @@
     <property name="connection.password">abc123</property>
     <mapping class="pl.grandhotel.grandhotel.model.Account"/>
     <mapping class="pl.grandhotel.grandhotel.model.Discount"/>
-    <mapping class="pl.grandhotel.grandhotel.model.Food"/>
     <mapping class="pl.grandhotel.grandhotel.model.Order"/>
     <mapping class="pl.grandhotel.grandhotel.model.Room"/>
     <mapping class="pl.grandhotel.grandhotel.model.User"/>
     <mapping class="pl.grandhotel.grandhotel.model.Vat"/>
+    <mapping class="pl.grandhotel.grandhotel.model.Invoice"/>
     <!-- <property name="connection.username"/> -->
     <!-- <property name="connection.password"/> -->
 
