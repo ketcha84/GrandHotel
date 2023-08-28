@@ -3,7 +3,7 @@ package pl.grandhotel.grandhotel.exceptions.OrderExceptions;
 public class OrderNotFoundException extends OrderException{
 
     public OrderNotFoundException(){
-        super("Order not fount");
+        super("Order not found");
     }
     public OrderNotFoundException(String message) {
         super(message);
