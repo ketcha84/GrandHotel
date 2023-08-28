@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserException;
-import pl.grandhotel.grandhotel.exceptions.userExceptions.UserExistsException;
+import pl.grandhotel.grandhotel.exceptions.userExceptions.UserNotFoundException;
 import pl.grandhotel.grandhotel.exceptions.userExceptions.UserIllegalParametersException;
 import pl.grandhotel.grandhotel.model.User;
 import pl.grandhotel.grandhotel.model.types.Status;
@@ -26,20 +26,40 @@ public class UserService {
         return repository.findAll();
     }
 
-    public Optional<User> getUserById(int id) {
-        return repository.findById(id);
+    public User getUserById(int id) throws UserException {
+        var u = repository.findById(id);
+        if (u.isEmpty()) {
+            throw new UserNotFoundException();
+        } else {
+            return u.get();
+        }
     }
 
-    public Optional<User> getByLastName(String lastName) {
-        return repository.findUserByUserLastnameContainsIgnoreCase(lastName);
+    public User getByLastName(String lastName) throws UserException {
+        var u = repository.findUserByUserLastnameContainsIgnoreCase(lastName);
+        if (u.isEmpty()) {
+            throw new UserNotFoundException();
+        } else {
+            return u.get();
+        }
     }
 
-    public Optional<User> getByEmail(String email) {
-        return repository.findUserByUserEmail(email);
+    public User getByEmail(String email) throws UserException {
+        var u = repository.findUserByUserEmail(email);
+        if (u.isEmpty()) {
+            throw new UserNotFoundException();
+        } else {
+            return u.get();
+        }
     }
 
-    public Optional<User> getByPhone(String phone) {
-        return repository.findUserByUserPhone(phone);
+    public User getByPhone(String phone) throws UserException {
+        var u = repository.findUserByUserPhone(phone);
+        if (u.isEmpty()) {
+            throw new UserNotFoundException();
+        } else {
+            return u.get();
+        }
     }
 
     public List<User> getByStatus(Status status) {
@@ -52,7 +72,7 @@ public class UserService {
 
     public User createUser(User user) throws UserException {
         if (repository.exists(Example.of(user))) {
-            throw new UserExistsException();
+            throw new UserException("User is exists");
         }
         if (isValid(user)) {
             user.setUserStatus(Status.NEW);
@@ -68,7 +88,7 @@ public class UserService {
             throw new UserIllegalParametersException();
         }
         if (!repository.exists(Example.of(user))) {
-            throw new UserException("User not found.");
+            throw new UserNotFoundException();
         }
         return repository.save(user);
     }
