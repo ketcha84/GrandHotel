@@ -1,5 +1,6 @@
 package pl.grandhotel.grandhotel.servises;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import pl.grandhotel.grandhotel.exceptions.AccountExceptions.AccountException;
@@ -12,12 +13,9 @@ import java.util.List;
 
 @Service
 public class AdminService {
-    final
-    AdminRepository adminRepository;
 
-    public AdminService(AdminRepository adminRepository) {
-        this.adminRepository = adminRepository;
-    }
+    @Autowired
+    private AdminRepository adminRepository;
 
     public List<Account> getAccounts() {
         return adminRepository.findAll();
