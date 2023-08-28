@@ -2,6 +2,7 @@ package pl.grandhotel.grandhotel.servises;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.grandhotel.grandhotel.exceptions.OrderExceptions.OrderException;
 import pl.grandhotel.grandhotel.exceptions.OrderExceptions.OrderNotFoundException;
 import pl.grandhotel.grandhotel.model.Order;
@@ -13,10 +14,14 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@Transactional
 public class OrderService {
 
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private InvoiceService invoiceService;
 
     public List<Order> getOrders() {
         return orderRepository.findAll();
@@ -58,6 +63,11 @@ public class OrderService {
         }
     }
 
+    public Order createOrder(Order order){
+//        todo napisać metody createOrder()
+//                przede wszystkim powinno występować transactional i tworzenie oraz dodanie invoce.
 
+        return null;
+    }
 
 }
