@@ -5,5 +5,5 @@ import org.springframework.stereotype.Repository;
 import pl.grandhotel.grandhotel.model.Invoice;
 
 @Repository
-public interface InvoiceRepositiry extends JpaRepository<Invoice, Integer> {
+public interface InvoiceRepository extends JpaRepository<Invoice, Integer> {
 }
