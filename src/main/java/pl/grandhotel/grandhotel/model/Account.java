@@ -59,12 +59,14 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return accountId == account.accountId && Objects.equals(accountLogin, account.accountLogin) && Objects.equals(accountPassword, account.accountPassword) && Objects.equals(accountRole, account.accountRole);
+        return  Objects.equals(accountLogin, account.accountLogin)
+                && Objects.equals(accountPassword, account.accountPassword)
+                && Objects.equals(accountRole, account.accountRole);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountId, accountLogin, accountPassword, accountRole);
+        return Objects.hash(accountLogin, accountPassword, accountRole);
     }
 
     @Override
