@@ -39,11 +39,22 @@ public class Order {
     private int amountInvalid;
 
     @Basic
-    @Column(name = "description", nullable = true, length = -1)
+    @Column(name = "description")
     private String description;
     @Enumerated(EnumType.STRING)
     @Column(name = "order_status", nullable = false)
     private Status orderStatus;
+
+    @Column(name = "toPay", nullable = false)
+    private BigDecimal toPay;
+
+    public BigDecimal getToPay() {
+        return toPay;
+    }
+
+    public void setToPay(BigDecimal toPay) {
+        this.toPay = toPay;
+    }
 
     public int getOrderId() {
         return orderId;
@@ -135,19 +146,19 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Order order = (Order) o;
-        return getOrderId() == order.getOrderId()
-                && getUserId() == order.getUserId()
+        return getUserId() == order.getUserId()
                 && getRoomId() == order.getRoomId()
                 && getAmountNormal() == order.getAmountNormal()
                 && getAmountPensioner() == order.getAmountPensioner()
                 && getAmountInvalid() == order.getAmountInvalid()
                 && Objects.equals(getStartDate(), order.getStartDate())
-                && Objects.equals(getEndDate(), order.getEndDate());
+                && Objects.equals(getEndDate(), order.getEndDate())
+                && Objects.equals(getToPay(), order.getToPay());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOrderId(), getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid());
+        return Objects.hash(getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid(), getToPay());
     }
 
     @Override
@@ -163,6 +174,7 @@ public class Order {
                 ", amountInvalid=" + amountInvalid +
                 ", description='" + description + '\'' +
                 ", orderStatus=" + orderStatus +
+                ", toPay=" + toPay +
                 '}';
     }
 }
