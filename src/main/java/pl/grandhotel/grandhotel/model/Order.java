@@ -45,17 +45,6 @@ public class Order {
     @Column(name = "order_status", nullable = false)
     private Status orderStatus;
 
-    @Column(name = "toPay", nullable = false)
-    private BigDecimal toPay;
-
-    public BigDecimal getToPay() {
-        return toPay;
-    }
-
-    public void setToPay(BigDecimal toPay) {
-        this.toPay = toPay;
-    }
-
     public int getOrderId() {
         return orderId;
     }
@@ -152,13 +141,12 @@ public class Order {
                 && getAmountPensioner() == order.getAmountPensioner()
                 && getAmountInvalid() == order.getAmountInvalid()
                 && Objects.equals(getStartDate(), order.getStartDate())
-                && Objects.equals(getEndDate(), order.getEndDate())
-                && Objects.equals(getToPay(), order.getToPay());
+                && Objects.equals(getEndDate(), order.getEndDate());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid(), getToPay());
+        return Objects.hash(getUserId(), getRoomId(), getStartDate(), getEndDate(), getAmountNormal(), getAmountPensioner(), getAmountInvalid());
     }
 
     @Override
@@ -174,7 +162,6 @@ public class Order {
                 ", amountInvalid=" + amountInvalid +
                 ", description='" + description + '\'' +
                 ", orderStatus=" + orderStatus +
-                ", toPay=" + toPay +
                 '}';
     }
 }
